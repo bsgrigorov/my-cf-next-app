@@ -1,17 +1,27 @@
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches:
       - main  # Set your default branch here
 
-
 jobs:
+  cancel-outdated:
+    name: Cancel Outdated Jobs
+    runs-on: ubuntu-latest
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: 'true'
+
   cf-deploy:
     runs-on: ubuntu-latest
     environment: cloudflare-prod
     permissions:
       contents: read
       deployments: write
+    if: ${{ contains(github.event.head_commit.message, '[fe-prod-release]') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
