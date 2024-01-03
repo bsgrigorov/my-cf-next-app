@@ -6,12 +6,12 @@ on:
 
 
 jobs:
-  example:
+  cf-deploy:
     runs-on: ubuntu-latest
+    environment: cloudflare-prod
     permissions:
       contents: read
       deployments: write
-    name: Example
     steps:
       - name: Checkout
         uses: actions/checkout@v3
