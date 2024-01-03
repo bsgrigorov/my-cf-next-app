@@ -20,6 +20,7 @@ jobs:
     environment: cloudflare-prod  
     permissions:
       contents: read
+      deployments: write
     if: ${{ contains(github.event.head_commit.message, '[fe-prod-release]') }}
     steps:
       - name: Checkout
