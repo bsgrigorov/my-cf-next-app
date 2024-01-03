@@ -17,7 +17,7 @@ jobs:
 
   cf-deploy:
     runs-on: ubuntu-latest
-    environment: cloudflare-prod 
+    environment: cloudflare-prod  
     permissions:
       contents: read
       deployments: write
